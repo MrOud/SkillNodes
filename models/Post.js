@@ -1,4 +1,8 @@
+import TopicSchema from '@/models/Topic'
+import CommentSchema from '@/models/Comment'
+
 const mongoose = require("mongoose");
+
 
 const PostSchema = new mongoose.Schema({
     title: String,
@@ -10,14 +14,29 @@ const PostSchema = new mongoose.Schema({
         default: Date.now
     },
     votes: {
-        up: Number,
-        down: Number,
-        loved: Number,
-        helpful: Number,
-        notHelpful: Number
+        up: {
+            type: Number,
+            default: 0
+        },
+        down: {
+            type: Number,
+            default: 0
+        },
+        loved: {
+            type: Number,
+            default: 0
+        },
+        helpful: {
+            type: Number,
+            default: 0
+        },
+        notHelpful: {
+            type: Number,
+            default: 0
+        },
     },
-    topics: [TopicSchema],
-    comments: [CommentSchema]
+    topics: [],
+    comments: []
 });
 
 module.exports = mongoose.models.Post || mongoose.model("Post", PostSchema);
