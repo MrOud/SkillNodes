@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={rubic.className}>
-        <main className="w-full h-full gradient">
+        <main className="w-full h-full gradient overflow-hidden">
           <Navbar />
           {children}
         </main>
