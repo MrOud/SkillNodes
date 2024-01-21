@@ -1,25 +1,32 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
+import Comment from "@/models/Comment";
 import User from "@/models/User";
-import Post from "@/models/Post";
+import { dbClient } from "@/lib/db";
 
 export async function POST(request: Request) {
   const data = await request.json();
+
+  const client = dbClient;
   const userSession = await getServerSession();
   const userEmail = userSession?.user?.email ?? "";
   if (!userEmail) {
     return NextResponse.redirect("/");
   }
+
   const user = await User.findOne({ email: userEmail });
-  const post = new Post({
-    title: data.title,
-    description: data.desc,
-    link: data.link,
-    content: data.content,
+  console.log(data.bodyContent);
+  console.log(data.madeOn);
+  console.log(user._id);
+
+  const comment = new Comment({
+    bodyContent: data.bodyContent,
     postedBy: user._id,
-    topics: [],
-    comments: [],
+    madeOn: data.madeOn.toString(),
   });
-  post.save();
+  console.log("server");
+  console.log(comment);
+
+  comment.save();
   return Response.json(data);
 }

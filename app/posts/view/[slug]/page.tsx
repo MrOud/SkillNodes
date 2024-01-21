@@ -1,53 +1,53 @@
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import parse from "html-react-parser";
+import ApiUrl from "@/lib/url";
+import NodeComments from "@/components/posts/NodeComments";
 
-const SkillNodePostPage = () => {
+const SkillNodePostPage = async ({
+  params,
+}: {
+  params: {
+    slug: string;
+  };
+}) => {
+  const url = ApiUrl("/posts/view/");
+  const res = await fetch(url, {
+    next: {
+      revalidate: 60,
+    },
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      slug: params.slug,
+    }),
+  });
+  const data = await res.json();
+
   return (
     <div className="w-full md:w-[80%]  min-h-screen p-3 md:p-8 mx-auto flex flex-col pt-0 md:pt-14">
       <div className="flex gap-4">
         <div className="w-1/2 flex flex-col gap-5 max-w-2xl">
-          <Image
-            src="https://picsum.photos/500"
-            width={500}
-            height={200}
-            alt="Node Post Image"
-            className="rounded-sm overflow-clip object-contain"
-          />
-          <h1 className="font-semibold text-xl md:text-2xl">
-            File your taxes as college students
-          </h1>
-          <p className="text-balance">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit ex
-            numquam ab itaque. Odio nemo fugit recusandae animi incidunt numquam
-            deleniti, quos dolore commodi excepturi officia, mollitia ratione.
-            Nihil, temporibus?
-          </p>
-          <div className="">
-            <Button variant={"default"} className="w-auto">
-              <Link href="/posts/create">Add your Skill Node!</Link>
-            </Button>
+          <div className="flex flex-col gap-5 bg-white rounded-lg p-6">
+            <h1 className="font-semibold text-2xl md:text-4xl">{data.title}</h1>
+            <p className="text-balance">{data.description}</p>
+            <Image
+              src={data.link}
+              width={500}
+              height={200}
+              alt="Node Post Image"
+              className="rounded-sm overflow-clip object-contain"
+            />
+
+            <Separator orientation="horizontal" />
+            <div className="">{parse(data.content)}</div>
           </div>
         </div>
         <Separator orientation="vertical" />
-        <div className="w-1/2 overflow-y-scroll scrollbar-hide">
-          <div className="flex flex-col gap-5">
-            <div className="flex flex-col bg-white rounded-lg border-2 border-gray-100 p-3 md:p-4">
-              <div className="flex items-center gap-5">
-                <Image
-                  src={"https://picsum.photos/50"}
-                  width={50}
-                  height={50}
-                  alt="Noders Profile Picture"
-                  className="rounded-full  max-w-sm bg-white overflow-clip object-contain"
-                />
-                <h1 className="font-normal ">Noders Name</h1>
-                <div className=""></div>
-              </div>
-            </div>
-          </div>
+        <div className="w-1/2">
+          <NodeComments slug={params.slug} />
         </div>
       </div>
     </div>

@@ -1,5 +1,8 @@
 import NodeCards from "@/components/NodeCards";
 import ApiUrl from "@/lib/url";
+import { EmptyState } from "@/public/images";
+import Image from "next/image";
+import Link from "next/link";
 
 const SearchPage = async ({
   params,
@@ -22,7 +25,6 @@ const SearchPage = async ({
     }),
   });
   const data = await res.json();
-  console.log(data)
 
   return (
     <div className="w-full md:w-[80%] min-h-screen p-3 md:p-8 mx-auto flex flex-col pt-0 md:pt-14">
@@ -36,18 +38,34 @@ const SearchPage = async ({
         </h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
-        {data.map((card) => {
-            let post = new Object
-            post.title = card.title
-            post.body = card.description
-            post.url = card.link
-            post.up = card.votes.up
-            post.down = card.votes.down
-            console.log(post)
-            return <>
-            <NodeCards post={post} />
-            </>
-        })}
+        {data.length == 0 ? (
+          <div className="flex flex-col items-center w-full">
+            <Image src={EmptyState} alt="No nodes found" />
+            <Link href={"/"}>Go Back</Link>
+          </div>
+        ) : (
+          data.map(
+            (card: {
+              _id: string;
+              title: string;
+              description: string;
+              link: string;
+              votes: {
+                up: number;
+                down: number;
+              };
+            }) => {
+              let post: any = new Object();
+              post.id = card._id;
+              post.title = card.title;
+              post.body = card.description;
+              post.url = card.link;
+              post.up = card.votes.up;
+              post.down = card.votes.down;
+              return <NodeCards post={post} key={post.title} />;
+            }
+          )
+        )}
       </div>
     </div>
   );

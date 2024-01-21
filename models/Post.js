@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const PostSchema = new mongoose.Schema({
   title: String,
   description: String,
-  imageUrl: String,
+  link: String,
   content: String,
   postedBy: mongoose.Schema.Types.ObjectId,
   datePosted: {

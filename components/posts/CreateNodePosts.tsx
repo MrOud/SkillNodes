@@ -11,7 +11,7 @@ import { Button } from "../ui/button";
 import { toast } from "../ui/use-toast";
 import ApiUrl from "@/lib/url";
 
-export default function AddPost() {
+export default function AddNodePost() {
   const [nodeTitle, setNodeTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [thumbnail, setThumbnail] = useState("");
@@ -55,7 +55,7 @@ export default function AddPost() {
         body: JSON.stringify({
           title: nodeTitle,
           desc: desc,
-          imageUrl: thumbnail,
+          link: thumbnail,
           content: editorRef.current?.getContent(),
         }),
       });

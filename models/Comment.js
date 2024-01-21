@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
 
 const CommentSchema = new mongoose.Schema({
-    comment: String,
-    postedBy: mongoose.Schema.Types.ObjectId,
-    postedOn: {
-        type: Date,
-        default: Date.now
-    }
+  bodyContent: String,
+  postedBy: mongoose.Schema.Types.ObjectId,
+  madeOn: String,
+  postedOn: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-module.exports = mongoose.models.User || mongoose.model("Topic", TopicSchema);
+module.exports =
+  mongoose.models.Comment || mongoose.model("Comment", CommentSchema);

@@ -18,6 +18,9 @@ const authOptions: NextAuthOptions = {
       clientSecret: GOOGLE_CLIENT_SECRET,
     }),
   ],
+  pages: {
+    signIn: "/signin",
+  },
   callbacks: {
     async signIn({ account, profile, email }) {
       // @ts-ignore
@@ -41,7 +44,6 @@ const authOptions: NextAuthOptions = {
             image: profilePicture,
           });
           await newUser.save();
-          console.log("newUser", newUser);
           return true;
         } catch (error) {}
         return false;
@@ -56,7 +58,6 @@ const authOptions: NextAuthOptions = {
             },
             { new: false }
           );
-          console.log("user", user);
           return true;
         } catch (error) {
           return false;

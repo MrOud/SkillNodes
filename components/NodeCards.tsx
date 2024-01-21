@@ -2,19 +2,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { LucideTriangle } from "lucide-react";
-import { useEffect, useState } from "react";
 
 const NodeCards = ({
   post,
 }: {
   post: {
+    id: string;
     title: string;
     body: string;
     url: string;
+    up: number;
+    down: number;
   };
 }) => {
-  const random = Math.floor(Math.random() * 500 + 100)
+  console.log(post.id);
 
+  const random = Math.floor(Math.random() * 500 + 100);
 
   return (
     <div className="flex bg-white rounded-lg border-2 border-gray-100 p-3 md:p-4">
@@ -28,7 +31,8 @@ const NodeCards = ({
         />
       </div>
       <div className="w-[60%] p-6">
-        <Link href={post.url} className="flex flex-col gap-5">
+        {/* <Link href={post.url} className="flex flex-col gap-5"> */}
+        <Link href={`/posts/view/${post.id}`} className="flex flex-col gap-5">
           <h1 className="font-semibold text-xl md:text-2xl line-clamp-2 md:line-clamp-3">
             {post.title}
           </h1>
