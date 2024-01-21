@@ -1,5 +1,6 @@
 "use client"
 import {useState, useEffect } from 'react'
+import NodeCards from './NodeCards'
 
 export default function AccountPage(props) {
 
@@ -34,9 +35,16 @@ export default function AccountPage(props) {
 
     return <div className='w-[80%] h-dvh flex flex-col m-auto'>
         <h1>Hello {userSession.user.name}</h1>
-        <p></p>
-        {userPosts.map((card) => { return <>
-            <p>{card.title}</p>
-        </>})}
+        <p>Your Posts:</p>
+        {userPosts.map((card) => {
+            let post = new Object
+            post.title = card.title
+            post.body = card.description
+            post.url = card.link
+            console.log(post)
+            return <>
+            <NodeCards post={post} />
+            </>
+        })}
     </div>
 }
