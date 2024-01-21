@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { LucideTriangle } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const NodeCards = ({
   post,
@@ -12,11 +13,14 @@ const NodeCards = ({
     url: string;
   };
 }) => {
+  const random = Math.floor(Math.random() * 500 + 100)
+
+
   return (
     <div className="flex bg-white rounded-lg border-2 border-gray-100 p-3 md:p-4">
       <div className="w-[30%] flex items-center">
         <Image
-          src="https://picsum.photos/200"
+          src={"https://picsum.photos/" + random}
           alt="Node Post Image"
           width={200}
           height={200}
