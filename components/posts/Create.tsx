@@ -2,9 +2,6 @@
 import {useState } from 'react'
 
 export default function AddPost() {
-    //const title = document.getElementById("postTitle")
-    //console.log(title)
-
     const [title, setTitle] = useState("")
     const [desc, setDesc] = useState("")
     const [link, setLink] = useState("")
@@ -31,8 +28,8 @@ export default function AddPost() {
     } 
 
     return (
-        <>
-         <div className="flex ">
+    <>
+         <div className="flex">
                     <p>Title:</p>
                     <input id="postTitle" type="text" value={title} onChange={(e) => {setTitle(e.target.value)}} className="grow ml-2 border border-black rounded-md"></input>
                 </div>
@@ -46,7 +43,7 @@ export default function AddPost() {
                     <p>Link:</p>
                     <input id="postLink" type="text" value={link} onChange={(e) => {setLink(e.target.value)}} className="grow ml-2 border border-black rounded-md"></input>    
                 </div>
-    <button onClick={() => makeRequest()}>Submit</button>
+        <button onClick={() => makeRequest()}>Submit</button>
     </>
     )
     }

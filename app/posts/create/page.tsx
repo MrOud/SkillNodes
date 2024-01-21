@@ -1,8 +1,7 @@
 import { getServerSession } from "next-auth";
 import { redirect } from 'next/navigation'
-import { useState, useRef } from "react";
-
 import AddPost from '@/components/posts/Create'
+
 export default async function CreatePost() {
     const userSession = await getServerSession();
     if (userSession == null) redirect('/')
