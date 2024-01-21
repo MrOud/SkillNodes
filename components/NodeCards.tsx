@@ -20,7 +20,7 @@ const NodeCards = ({
           alt="Node Post Image"
           width={200}
           height={200}
-          className="rounded-sm w-[100px] md:w-[200px] max-w-md bg-white overflow-clip object-contain"
+          className="rounded-sm w-[75px] h-auto md:w-[150px] md:h-auto max-w-md bg-white overflow-clip object-contain"
         />
       </div>
       <div className="w-[60%] p-6">
@@ -38,7 +38,7 @@ const NodeCards = ({
           <Button variant={"ghost"}>
             <LucideTriangle className="w-6 h-6" />
           </Button>
-          <p>20</p>
+          <p>{post.up - post.down}</p>
           <Button variant={"ghost"}>
             <LucideTriangle className="w-6 h-6 rotate-180" />
           </Button>
