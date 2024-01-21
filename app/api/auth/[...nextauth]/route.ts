@@ -18,9 +18,7 @@ const authOptions: NextAuthOptions = {
       clientSecret: GOOGLE_CLIENT_SECRET,
     }),
   ],
-  pages: {
-    signIn: "/signin",
-  },
+
   callbacks: {
     async signIn({ account, profile, email }) {
       // @ts-ignore
