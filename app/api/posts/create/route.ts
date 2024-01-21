@@ -1,18 +1,25 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { dbClient } from '@/lib/db';
-import User from '@/models/User';
-import Post from '@/models/Post'
+import User from "@/models/User";
+import Post from "@/models/Post";
 
 export async function POST(request: Request) {
-  const data = await request.json()
-  const client = dbClient
+  const data = await request.json();
   const userSession = await getServerSession();
-  
-  const user = await User.findOne({ email: userSession?.user.email})
-  const post = new Post({title: data.title, description: data.desc, link: data.link, postedBy: user._id, topics: [], comments: []  })
-  post.save()
-
-  console.log(data.title)
-  return Response.json(data)
+  const userEmail = userSession?.user?.email ?? "";
+  if (!userEmail) {
+    return NextResponse.redirect("/");
+  }
+  const user = await User.findOne({ email: userEmail });
+  const post = new Post({
+    title: data.title,
+    description: data.desc,
+    imageUrl: data.link,
+    content: data.content,
+    postedBy: user._id,
+    topics: [],
+    comments: [],
+  });
+  post.save();
+  return Response.json(data);
 }

@@ -1,5 +1,8 @@
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import parse from "html-react-parser";
 
 const SkillNodePostPage = () => {
   return (
@@ -22,6 +25,11 @@ const SkillNodePostPage = () => {
             deleniti, quos dolore commodi excepturi officia, mollitia ratione.
             Nihil, temporibus?
           </p>
+          <div className="">
+            <Button variant={"default"} className="w-auto">
+              <Link href="/posts/create">Add your Skill Node!</Link>
+            </Button>
+          </div>
         </div>
         <Separator orientation="vertical" />
         <div className="w-1/2 overflow-y-scroll scrollbar-hide">
@@ -36,6 +44,7 @@ const SkillNodePostPage = () => {
                   className="rounded-full  max-w-sm bg-white overflow-clip object-contain"
                 />
                 <h1 className="font-normal ">Noders Name</h1>
+                <div className=""></div>
               </div>
             </div>
           </div>

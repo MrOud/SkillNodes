@@ -1,5 +1,6 @@
 const ApiUrl = (path: string) => {
-  return `http://localhost:3000/api/${path}`;
+  let url = process.env.NEXT_PUBLIC_API_URL;
+  return url + path;
 };
 
 export default ApiUrl;

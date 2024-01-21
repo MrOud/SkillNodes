@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { Toaster } from "@/components/ui/toaster";
 
 const rubic = Rubik({ subsets: ["latin"] });
 
@@ -18,9 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={rubic.className}>
-        <main className="w-full h-full gradient overflow-hidden">
+        <main className="w-full h-full gradient overflow-hidden relative">
           <Navbar />
           {children}
+          <Toaster />
         </main>
       </body>
     </html>
