@@ -1,33 +1,10 @@
-export async function POST(request: Request) {
-  const { search } = await request.json();
-  console.log(search);
+import { dbClient } from '@/lib/db';
+import Post from '@/models/Post'
 
-  return Response.json({
-    data: [
-      {
-        id: 1,
-        title: "Test Post",
-        url: "https://www.google.com",
-        body: "This is a test post",
-      },
-      {
-        id: 2,
-        title: "Test Post 2",
-        url: "https://www.google.com",
-        body: "This is a test post",
-      },
-      {
-        id: 3,
-        title: "Test Post 3",
-        url: "https://www.google.com",
-        body: "This is a test post",
-      },
-      {
-        id: 4,
-        title: "Test Post 4",
-        url: "https://www.google.com",
-        body: "This is a test post",
-      },
-    ],
-  });
+export async function POST(request: Request) {
+  const data  = await request.json()
+  const client = dbClient
+
+  const post = await Post.find({$or: [{"title": new RegExp(data.search,'i')}, {"description":  new RegExp(data.search,'i')}]})
+  return Response.json(post);
 }

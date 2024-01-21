@@ -2,29 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { LucideTriangle } from "lucide-react";
-import { useEffect, useState } from "react";
 
-const NodeCards = ({
-  post,
-}: {
-  post: {
-    title: string;
-    body: string;
-    url: string;
-  };
-}) => {
-  const random = Math.floor(Math.random() * 500 + 100)
-
-
+const NodeCards = (props) => {
+   const post = props.post
   return (
     <div className="flex bg-white rounded-lg border-2 border-gray-100 p-3 md:p-4">
       <div className="w-[30%] flex items-center">
         <Image
-          src={"https://picsum.photos/" + random}
+          src="https://picsum.photos/200"
           alt="Node Post Image"
           width={200}
           height={200}
-          className="rounded-sm w-[75px] h-auto md:w-[150px] md:h-auto max-w-md bg-white overflow-clip object-contain"
+          className="rounded-sm w-[100px] md:w-[200px] max-w-md bg-white overflow-clip object-contain"
         />
       </div>
       <div className="w-[60%] p-6">
@@ -42,7 +31,7 @@ const NodeCards = ({
           <Button variant={"ghost"}>
             <LucideTriangle className="w-6 h-6" />
           </Button>
-          <p>{post.up - post.down}</p>
+          <p>20</p>
           <Button variant={"ghost"}>
             <LucideTriangle className="w-6 h-6 rotate-180" />
           </Button>

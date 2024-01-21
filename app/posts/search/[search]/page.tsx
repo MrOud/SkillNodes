@@ -21,7 +21,8 @@ const SearchPage = async ({
       search: params.search,
     }),
   });
-  const { data } = await res.json();
+  const data = await res.json();
+  console.log(data)
 
   return (
     <div className="w-full md:w-[80%] min-h-screen p-3 md:p-8 mx-auto flex flex-col pt-0 md:pt-14">
@@ -35,9 +36,18 @@ const SearchPage = async ({
         </h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
-        {data.map((post: any) => (
-          <NodeCards post={post} />
-        ))}
+        {data.map((card) => {
+            let post = new Object
+            post.title = card.title
+            post.body = card.description
+            post.url = card.link
+            post.up = card.votes.up
+            post.down = card.votes.down
+            console.log(post)
+            return <>
+            <NodeCards post={post} />
+            </>
+        })}
       </div>
     </div>
   );
