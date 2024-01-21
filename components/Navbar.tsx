@@ -23,6 +23,9 @@ const Navbar = async () => {
         </Link>
         {session ? (
           <>
+            <Link href="/posts/create">
+              <Button variant={"ghost"}>Add a Node</Button>
+            </Link>
             <Link href="/accounts">
               <Button variant={"ghost"}>Accounts</Button>
             </Link>

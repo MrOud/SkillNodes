@@ -41,6 +41,8 @@ export default function AccountPage(props) {
             post.title = card.title
             post.body = card.description
             post.url = card.link
+            post.up = card.votes.up
+            post.down = card.votes.down
             console.log(post)
             return <>
             <NodeCards post={post} />
