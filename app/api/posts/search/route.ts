@@ -1,5 +1,3 @@
-import { url } from "inspector";
-
 export async function POST(request: Request) {
   const { search } = await request.json();
   console.log(search);

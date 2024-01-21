@@ -8,7 +8,7 @@ import { SkillNodeLogo, SkillNodeMobileLogo } from "@/public/images";
 const Navbar = async () => {
   const session = await getServerSession();
   return (
-    <div className="w-full sm:w-[80%] mx-auto p-8 flex flex-row justify-between">
+    <div className="w-full sticky top-0 left-0 sm:w-[80%] mx-auto p-8 flex flex-row justify-between">
       <Link href={"/"} className="">
         <div className="max-w-xs pr-32 hidden sm:block">
           <Image src={SkillNodeLogo} alt="SkillNode Logo" />

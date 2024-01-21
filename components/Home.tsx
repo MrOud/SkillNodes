@@ -29,7 +29,7 @@ const HomeComp = () => {
           placeholder="search for a topic or lessons"
           className="text-xl lg:text-4xl md:text-xl xl:text-6xl w-full max-w-5xl bg-transparent font-medium placeholder:font-medium  outline-none border-0 border-b-2 border-b-black"
         />
-        <Button className="w-auto ml-0 mt-10 sm:mt-0 lg:-ml-24 md:-ml-20 font-normal bg-[#00B295] px-5 py-8 md:py-7 md:px-4 text-white">
+        <Button className="w-auto ml-0 mt-10 sm:mt-0 lg:-ml-24 md:-ml-20 font-normal px-5 py-8 md:py-7 md:px-4 text-white">
           <Link
             href={`/posts/search/${search}`}
             className="text-xl lg:text-lg md:text-base"
