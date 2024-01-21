@@ -57,8 +57,8 @@ const NodeComments = ({ slug }: { slug: string }) => {
         {comments.length == 0 ? (
           <h1>No Comments yet, be the first one to do so</h1>
         ) : (
-          comments.map((comment) => {
-            return <IndvComment comment={comment} />;
+          comments.map((comment, i) => {
+            return <IndvComment key={i} comment={comment} />;
           })
         )}
       </div>

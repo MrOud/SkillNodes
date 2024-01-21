@@ -4,12 +4,13 @@ import NodeCards from "./NodeCards";
 
 export default function AccountPage(props: any) {
   const [userPosts, setUserPosts] = useState([]);
+  var name = "Sohel";
   useEffect(() => {
     getAllPosts().then((data) => {
       let arr: any = Array.from(data);
       setUserPosts(arr);
     });
-  }, []);
+  }, [name]);
   console.log(userPosts);
   const userSession = props.user;
   const getAllPosts = async () => {
