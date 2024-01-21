@@ -14,7 +14,7 @@ const SearchPage = async ({
   const url = ApiUrl("/posts/search/");
   const res = await fetch(url, {
     next: {
-      revalidate: 60,
+      revalidate: 20,
     },
     method: "POST",
     headers: {

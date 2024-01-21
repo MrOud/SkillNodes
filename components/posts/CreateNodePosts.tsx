@@ -10,6 +10,7 @@ import { Editor as TinyMCEEDitor } from "tinymce";
 import { Button } from "../ui/button";
 import { toast } from "../ui/use-toast";
 import ApiUrl from "@/lib/url";
+import { redirect } from "next/navigation";
 
 export default function AddNodePost() {
   const [nodeTitle, setNodeTitle] = useState("");
@@ -73,6 +74,7 @@ export default function AddNodePost() {
         title: "Success!",
         description: "Your node post has been created!",
       });
+      redirect(`/`);
     } catch (err) {
       console.log(err);
     }

@@ -1,6 +1,5 @@
 "use client";
 import { Button } from "../ui/button";
-import Link from "next/link";
 import Image from "next/image";
 import { Editor } from "@tinymce/tinymce-react";
 import { useEffect, useRef, useState } from "react";
@@ -10,6 +9,7 @@ import { toast } from "../ui/use-toast";
 import ApiUrl from "@/lib/url";
 // get user session in client side
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const NodeComments = ({ slug }: { slug: string }) => {
   const { data: session, status } = useSession();
@@ -90,6 +90,7 @@ const IndvComment = ({ comment }: { comment: any }) => {
 
 const MakeComment = ({ slug }: { slug: string }) => {
   const editorRef = useRef<TinyMCEEDitor | null>(null);
+  const router = useRouter();
 
   const postComment = async () => {
     const content = editorRef.current?.getContent();
@@ -112,7 +113,6 @@ const MakeComment = ({ slug }: { slug: string }) => {
           madeOn: slug,
         }),
       });
-      console.log("in response");
 
       let data = await response.json();
 
@@ -125,6 +125,7 @@ const MakeComment = ({ slug }: { slug: string }) => {
         });
         return;
       }
+      window.location.reload();
       toast({
         title: "Success!",
         description: "Your comment has been posted!",

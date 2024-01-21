@@ -15,15 +15,13 @@ const NodeCards = ({
     down: number;
   };
 }) => {
-  console.log(post.id);
-
   const random = Math.floor(Math.random() * 500 + 100);
 
   return (
     <div className="flex bg-white rounded-lg border-2 border-gray-100 p-3 md:p-4">
       <div className="w-[30%] flex items-center">
         <Image
-          src={"https://picsum.photos/" + random}
+          src={post.url}
           alt="Node Post Image"
           width={200}
           height={200}
